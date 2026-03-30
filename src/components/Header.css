@@ -1,0 +1,543 @@
+/* ========================================
+   🎨 LinguaPro - Professional Header
+   Colors: Purple (#7c3aed), White (#ffffff), Black (#0a0a0f)
+   Font: Tajawal for Arabic, Inter for English
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary: #7c3aed;
+    --primary-light: #a78bfa;
+    --primary-dark: #5b21b6;
+    --secondary: #0a0a0f;
+    --white: #ffffff;
+    --gray-200: #e2e8f0;
+    --gray-400: #94a3b8;
+    --gray-600: #475569;
+    --glass-bg: rgba(15, 23, 42, 0.8);
+    --glass-border: rgba(124, 58, 237, 0.3);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.5);
+    --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ✅ إعادة تعيين */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Tajawal', sans-serif;
+    background: var(--secondary);
+    color: var(--white);
+}
+
+[dir="rtl"] body {
+    font-family: 'Tajawal', 'Inter', sans-serif;
+}
+
+/* ========================================
+   🧭 الهيدر الرئيسي
+   ======================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 12px 24px;
+    background: transparent;
+    transition: var(--transition);
+    backdrop-filter: blur(0);
+}
+
+.header.scrolled {
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-md);
+    padding: 8px 24px;
+}
+
+.header-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.header.scrolled .header-glow {
+    opacity: 1;
+}
+
+/* ✅ حاوية الهيدر */
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+}
+
+/* ========================================
+   🎯 الشعار
+   ======================================== */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    background: rgba(124, 58, 237, 0.15);
+    transform: translateY(-2px);
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--white);
+    box-shadow: 0 5px 20px rgba(124, 58, 237, 0.4);
+    animation: logoPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% { box-shadow: 0 5px 20px rgba(124, 58, 237, 0.4); }
+    50% { box-shadow: 0 8px 30px rgba(124, 58, 237, 0.7); }
+}
+
+.logo-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--white);
+    display: flex;
+    gap: 2px;
+}
+
+.logo-char {
+    display: inline-block;
+    animation: charEntrance 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.logo-char.highlight {
+    background: linear-gradient(135deg, var(--primary-light), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes charEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   🧭 قائمة التنقل (سطح المكتب)
+   ======================================== */
+.nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    color: var(--gray-200);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-link i {
+    font-size: 0.9rem;
+    color: var(--primary-light);
+    transition: var(--transition);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 60%;
+    height: 2px;
+    background: var(--primary-light);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--white);
+    background: rgba(124, 58, 237, 0.15);
+    transform: translateY(-2px);
+}
+
+.nav-link:hover i {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.nav-link:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* ========================================
+   🔐 البوكسين: تسجيل + دخول
+   ======================================== */
+.auth-boxes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ✅ زر تبديل اللغة */
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    color: var(--gray-200);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.lang-btn:hover {
+    background: rgba(124, 58, 237, 0.2);
+    border-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.lang-btn i {
+    font-size: 1rem;
+}
+
+/* ✅ الأزرار المشتركة */
+.auth-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.auth-btn i {
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.auth-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+/* ✅ بوكس الدخول - شفاف */
+.login-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid var(--gray-600);
+    color: var(--white);
+}
+
+.login-btn:hover {
+    border-color: var(--primary-light);
+    background: rgba(124, 58, 237, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.login-btn:hover i {
+    color: var(--primary-light);
+    transform: translateX(3px);
+}
+
+[dir="rtl"] .login-btn:hover i {
+    transform: translateX(-3px);
+}
+
+/* ✅ بوكس التسجيل - مميز ومتوهج */
+.register-btn {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border: 2px solid transparent;
+    color: var(--white);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+}
+
+.register-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.5s;
+    z-index: 1;
+}
+
+.register-btn:hover::before {
+    left: 100%;
+}
+
+.register-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(124, 58, 237, 0.6);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+.register-btn:hover i {
+    animation: iconBounce 0.4s ease;
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* ✅ تأثير التوهج للأزرار */
+.btn-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    border-radius: inherit;
+    transition: transform 0.4s ease;
+    pointer-events: none;
+}
+
+.auth-btn:hover .btn-glow {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+}
+
+/* ✅ تأثير الوميض للتسجيل */
+.btn-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-20deg);
+    animation: shineMove 3s infinite;
+    opacity: 0.3;
+}
+
+@keyframes shineMove {
+    0% { left: -100%; }
+    20% { left: 200%; }
+    100% { left: 200%; }
+}
+
+/* ========================================
+   📱 زر القائمة للموبايل
+   ======================================== */
+.mobile-toggle {
+    display: none;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.mobile-toggle:hover {
+    background: rgba(124, 58, 237, 0.2);
+    transform: scale(1.05);
+}
+
+/* ========================================
+   📱 قائمة الموبايل
+   ======================================== */
+.nav-mobile {
+    display: none;
+    flex-direction: column;
+    padding: 16px 24px;
+    background: var(--glass-bg);
+    border-top: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-mobile .nav-link {
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin: 4px 0;
+}
+
+/* ========================================
+   📱 الاستجابة للشاشات
+   ======================================== */
+@media (max-width: 1024px) {
+    .nav-desktop {
+        display: none;
+    }
+    
+    .mobile-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .nav-mobile.active {
+        display: flex;
+    }
+    
+    .auth-boxes {
+        gap: 8px;
+    }
+    
+    .lang-btn,
+    .auth-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .auth-btn i {
+        display: none; /* إخفاء الأيقونات في الشاشات الصغيرة */
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10px 16px;
+    }
+    
+    .header.scrolled {
+        padding: 6px 16px;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
+    
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    
+    .auth-boxes {
+        gap: 6px;
+    }
+    
+    .lang-btn {
+        padding: 8px 12px;
+    }
+    
+    .lang-btn span {
+        display: none;
+    }
+    
+    .register-btn,
+    .login-btn {
+        padding: 10px 14px;
+    }
+}
+
+/* ========================================
+   🎨 تأثيرات إضافية
+   ======================================== */
+
+/* ✅ تأثير دخول العناصر */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-container > * {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.header-container > *:nth-child(1) { animation-delay: 0.1s; }
+.header-container > *:nth-child(2) { animation-delay: 0.2s; }
+.header-container > *:nth-child(3) { animation-delay: 0.3s; }
+
+/* ✅ دعم الوضع الليلي */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --secondary: #050507;
+        --glass-bg: rgba(5, 5, 7, 0.9);
+    }
+}
+
+/* ✅ تأثيرات الوصول */
+.auth-btn:focus-visible,
+.nav-link:focus-visible,
+.lang-btn:focus-visible {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+}
+
+/* ✅ إخفاء القائمة عند التمرير للأسفل */
+.header.hidden {
+    transform: translateY(-100%);
+}
